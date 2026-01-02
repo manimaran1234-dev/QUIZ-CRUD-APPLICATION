@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #e7f3ff 0%, #f0f2f5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 396px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #1c1e21;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #ffffff;
+            margin-top: 12px;
+        }
+
+        .card input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        .card input::placeholder {
+            color: #8a8d91;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 20px;
+            background: #1877f2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .card button:hover {
+            background: #166fe5;
+        }
+
+        .card button:active {
+            background: #1564d6;
+        }
+
+        .link {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #dadde1;
+            color: #1c1e21;
+            font-size: 15px;
+        }
+
+        .link a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            .card h2 {
+                font-size: 24px;
+            }
+
+            .card input,
+            .card button {
+                font-size: 16px;
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Create Account</h2>
+
+        <input id="username" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+
+        <button onclick="register()">Register</button>
+
+        <div class="link">
+            Already have an account?
+            <a href="../user/user-login.html">Go to Login</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function register() {
+        fetch('/auth/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        })
+        .then(res => res.text())
+        .then(msg => {
+            alert(msg);
+            window.location.href = "/user/user-login.html";
+        });
+    }
+</script>
+
+</body>
+</html>

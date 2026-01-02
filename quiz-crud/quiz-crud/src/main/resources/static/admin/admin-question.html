@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Questions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* TOP NAVBAR */
+        .navbar {
+            background: #ffffff;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar h2 {
+            color: #1877f2;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #050505;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .navbar a:hover {
+            background: #f0f2f5;
+            color: #1877f2;
+        }
+
+        .logout-btn {
+            background: #e4e6eb;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .logout-btn:hover {
+            background: #d8dadf;
+        }
+
+        /* FORM CONTAINER */
+        .form-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e4e6eb;
+        }
+
+        h1 {
+            color: #050505;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.2s;
+            background: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        input::placeholder {
+            color: #8a8d91;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 12px;
+            background: #1877f2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        button:hover {
+            background: #166fe5;
+        }
+
+        button:active {
+            background: #1564d6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .options-group {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e4e6eb;
+        }
+
+        .options-label {
+            color: #65676b;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 16px;
+            }
+
+            .navbar h2 {
+                font-size: 22px;
+            }
+
+            .navbar .nav-links {
+                display: none;
+            }
+
+            .form-container {
+                margin: 24px auto;
+                padding: 0 15px;
+            }
+
+            form {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 24px;
+            }
+
+            input,
+            button {
+                font-size: 15px;
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h2>Admin Panel</h2>
+    <div class="nav-links">
+        <a href="admin-dashboard.html">Dashboard</a>
+        <a href="admin-question.html">Add Question</a>
+        <a href="#" onclick="loadUsers()">Users</a>
+        <a href="#" onclick="loadScores()">Scores</a>
+        <a href="#" onclick="loadQuestions()">Manage Quiz</a>
+        <a href="../admin/admin-login.html" class="logout-btn">Logout</a>
+    </div>
+</div>
+
+<!-- FORM CONTAINER -->
+<div class="form-container">
+    <form onsubmit="addQuestion(); return false;">
+        <h1>Add Question</h1>
+
+        <div class="form-group">
+            <input id="question" placeholder="Enter your question here" required>
+        </div>
+
+        <div class="options-group">
+            <span class="options-label">Answer Options</span>
+            <input id="o1" placeholder="Option 1" required>
+            <input id="o2" placeholder="Option 2" required>
+            <input id="o3" placeholder="Option 3" required>
+            <input id="o4" placeholder="Option 4" required>
+        </div>
+
+        <div class="form-group">
+            <input id="answer" placeholder="Correct Answer (enter option number: 1, 2, 3, or 4)" required>
+        </div>
+
+        <button type="submit">Add Question</button>
+    </form>
+</div>
+
+<script src="../js/admin.js"></script>
+</body>
+</html>

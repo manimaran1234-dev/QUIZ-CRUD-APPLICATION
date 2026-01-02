@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body.login-body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #e7f3ff 0%, #f0f2f5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 396px;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            color: #1c1e21;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #ffffff;
+        }
+
+        .login-box input[type="text"]:focus,
+        .login-box input[type="password"]:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        .login-box input::placeholder {
+            color: #8a8d91;
+        }
+
+        .login-box button {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 12px;
+            background: #1877f2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-box button:hover {
+            background: #166fe5;
+        }
+
+        .login-box button:active {
+            background: #1564d6;
+        }
+
+        .login-box p {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #dadde1;
+            color: #1c1e21;
+            font-size: 15px;
+        }
+
+        .login-box a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .login-box a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+
+            .login-box h2 {
+                font-size: 20px;
+            }
+
+            .login-box input[type="text"],
+            .login-box input[type="password"],
+            .login-box button {
+                font-size: 16px;
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+<body class="login-body">
+
+<div class="login-box">
+    <h2>User Login</h2>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p>New user?
+        <a href="../user/user-register.html">Register</a>
+    </p>
+</div>
+
+<script src="../js/user.js"></script>
+</body>
+</html>

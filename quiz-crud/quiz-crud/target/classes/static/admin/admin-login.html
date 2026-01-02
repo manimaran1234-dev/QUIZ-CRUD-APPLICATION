@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #e7f3ff 0%, #f0f2f5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 396px;
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #1c1e21;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .admin-badge {
+            display: inline-block;
+            background: #e7f3ff;
+            color: #1877f2;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            border: 1px solid #d0e8ff;
+        }
+
+        .card input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 17px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: #ffffff;
+        }
+
+        .card input:focus {
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px rgba(24, 119, 242, 0.2);
+        }
+
+        .card input::placeholder {
+            color: #8a8d91;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px 16px;
+            margin-top: 12px;
+            background: #1877f2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #166fe5;
+        }
+
+        .login-btn:active {
+            background: #1564d6;
+        }
+
+        .security-note {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid #dadde1;
+            color: #65676b;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+            }
+
+            .card h2 {
+                font-size: 20px;
+            }
+
+            .card input,
+            .login-btn {
+                font-size: 16px;
+                padding: 12px 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Admin Login</h2>
+    <div class="admin-badge">Administrator Access</div>
+
+    <input id="username" placeholder="Admin username">
+    <input id="password" type="password" placeholder="Password">
+
+    <button class="login-btn" onclick="login()">Login</button>
+
+    <div class="security-note">
+        🔒 This area is restricted to authorized administrators
+    </div>
+</div>
+
+<script>
+    function login(){
+        fetch('/auth/login',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
+        })
+        .then(res=>res.json())
+        .then(user=>{
+            if(user.role === "ADMIN"){
+                window.location.href="/admin/admin-dashboard.html";
+            } else {
+                alert("Invalid Admin");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
